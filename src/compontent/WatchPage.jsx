@@ -8,7 +8,7 @@ import LiveChart from "./LiveChart";
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
-  console.log(searchParams.get("v"));
+  // console.log(searchParams.get("v"));
 
   const dispatch = useDispatch();
   useEffect(() => {

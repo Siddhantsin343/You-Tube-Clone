@@ -18,16 +18,13 @@ const Head = () => {
 
   const searchCache = useSelector((store) => store.search);
 
-  console.log(searchQuery);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchCache[searchQuery]) {
-        console.log("CACHE HIT");
 
         setSuggestion(searchCache[searchQuery]);
       } else {
-        console.log("API CALL");
+     
 
         getSearchSugeestion();
       }
