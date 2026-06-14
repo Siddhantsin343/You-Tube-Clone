@@ -1,6 +1,8 @@
 # YouTube Clone
 
-A YouTube Clone built with React and Vite that allows users to browse trending videos, search for videos, and watch them directly within the application.
+A basic YouTube Clone built with React and Vite as a learning project to understand core frontend concepts such as React components, routing, state management with Redux Toolkit, API integration, search functionality, and responsive UI development.
+
+This project is intended for educational purposes and focuses on implementing fundamental concepts rather than replicating every feature of YouTube.
 
 ## 🚀 Features
 
