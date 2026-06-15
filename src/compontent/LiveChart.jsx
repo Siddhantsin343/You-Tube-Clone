@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import ChatMssg from "./CharMsg"
 import { useDispatch, useSelector } from "react-redux"
 import { addMessage } from "./utils/chatSlice"
@@ -8,8 +8,10 @@ import { generateRandomName, makeRandomMsg } from "./utils/helper"
 const LiveChart= ()=>{
 
     const dispatch = useDispatch()
-
     const chatMsg = useSelector((store)=> store.chat.messages)
+
+    const [liveMessage , setLiveMessage] = useState("")
+
     useEffect(()=>{
        
         const i = setInterval(()=>{
@@ -42,6 +44,36 @@ const LiveChart= ()=>{
       />
     ))}
   </div>
+<form
+  className="flex items-center gap-2 p-2 border-t mt-auto"
+  onSubmit={(e) => {
+    e.preventDefault();
+
+    dispatch(
+      addMessage({
+        name: "Siddhant",
+        message: liveMessage,
+      })
+    );
+
+    setLiveMessage("");
+  }}
+>
+  <input
+    type="text"
+    placeholder="Type a message..."
+    value={liveMessage}
+    onChange={(e) => setLiveMessage(e.target.value)}
+    className="flex-1 px-4 py-2 border rounded-full outline-none focus:ring-2 focus:ring-blue-500"
+  />
+
+  <button
+    type="submit"
+    className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition cursor-pointer"
+  >
+    Send
+  </button>
+</form>
 </div>
     )
 }
