@@ -15,7 +15,6 @@ const LiveChart= ()=>{
     useEffect(()=>{
        
         const i = setInterval(()=>{
-            console.log("Api Call");
 
             dispatch(addMessage({
                 name : generateRandomName(),
