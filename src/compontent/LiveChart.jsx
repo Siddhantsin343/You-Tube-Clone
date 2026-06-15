@@ -3,6 +3,7 @@ import ChatMssg from "./CharMsg"
 import { useDispatch, useSelector } from "react-redux"
 import { addMessage } from "./utils/chatSlice"
 import store from "./utils/store"
+import { generateRandomName, makeRandomMsg } from "./utils/helper"
 
 const LiveChart= ()=>{
 
@@ -10,16 +11,16 @@ const LiveChart= ()=>{
 
     const chatMsg = useSelector((store)=> store.chat.messages)
     useEffect(()=>{
-        //api Polling
+       
         const i = setInterval(()=>{
             console.log("Api Call");
 
             dispatch(addMessage({
-                name : "siddhant",
-                message : "Hi"
+                name : generateRandomName(),
+                message : makeRandomMsg(20) + "💓"
             }))
 
-        }, 2000)
+        }, 1000)
 
         return ()=>{
             clearInterval(i)
@@ -27,23 +28,21 @@ const LiveChart= ()=>{
     },[])
 
     return (
-          <div className="w-[350px] border rounded-lg p-3 h-[600px] overflow-y-scroll shadow">
+        <div className="w-[350px] border rounded-lg p-3 h-[600px] shadow flex flex-col">
+  <h1 className="font-bold text-lg mb-3">
+    Live Chat
+  </h1>
 
-    <h1 className="font-bold text-lg mb-3">
-      Live Chat
-    </h1>
-
-    <div className="flex flex-col gap-2">
-      {chatMsg.map((c, i) => (
-        <ChatMssg
-          key={i}
-          name={c.name}
-          message={c.message}
-        />
-      ))}
-    </div>
-
+  <div className="flex-1 overflow-y-auto">
+    {chatMsg.map((c, i) => (
+      <ChatMssg
+        key={i}
+        name={c.name}
+        message={c.message}
+      />
+    ))}
   </div>
+</div>
     )
 }
 
